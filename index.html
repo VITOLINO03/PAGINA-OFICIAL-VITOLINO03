@@ -11,6 +11,7 @@
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
             --text-color: #ffffff;
+            --smoke-color: rgba(255, 255, 255, 0.2);
         }
 
         @keyframes fadeInUp {
@@ -71,7 +72,9 @@
             width: 100%; 
         }
 
+        /* CONFIGURAÇÃO DO BOTÃO COM EFEITO FUMAÇA */
         .link-card {
+            position: relative;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             padding: 16px 20px;
@@ -82,16 +85,40 @@
             display: flex;
             align-items: center;
             justify-content: center; 
-            transition: 0.3s;
+            transition: all 0.4s ease;
             opacity: 0;
             animation: fadeInUp 0.6s ease forwards;
             letter-spacing: 1px;
+            overflow: hidden; /* Garante que a fumaça não saia do botão */
+        }
+
+        /* ELEMENTO DA FUMAÇA */
+        .link-card::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, var(--smoke-color) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease-out, height 0.6s ease-out, opacity 0.6s ease-out;
+            opacity: 0;
+            filter: blur(20px);
+            z-index: 0;
+        }
+
+        .link-card:hover::before {
+            width: 150%;
+            height: 300%;
+            opacity: 1;
         }
 
         .link-card:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: scale(1.03);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .icon-img {
@@ -100,7 +127,19 @@
             margin-right: 12px;
             border-radius: 4px;
             object-fit: contain;
-            text-transform: none; 
+            position: relative;
+            z-index: 1; /* Mantém acima da fumaça */
+            transition: transform 0.3s ease;
+        }
+
+        .link-card:hover .icon-img {
+            transform: scale(1.1) rotate(-5deg);
+            filter: drop-shadow(0 0 8px #fff);
+        }
+
+        span {
+            position: relative;
+            z-index: 1;
         }
 
         /* Delays das animações */
@@ -130,35 +169,35 @@
 
         <div class="links-container">
             <a href="https://livepix.gg/vitolino" target="_blank" class="link-card">
-                <img src="id5U7lS6PT_logos.jpeg" class="icon-img"> APOIE O CANAL
+                <img src="id5U7lS6PT_logos.jpeg" class="icon-img"> <span>APOIE O CANAL</span>
             </a>
 
             <a href="https://www.instagram.com/vitolino03/" target="_blank" class="link-card">
-                <img src="Instagram_Symbol_2.webp" class="icon-img"> INSTAGRAM
+                <img src="Instagram_Symbol_2.webp" class="icon-img"> <span>INSTAGRAM</span>
             </a>
 
             <a href="https://www.facebook.com/profile.php?id=61576769283531" target="_blank" class="link-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" class="icon-img"> FACEBOOK
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" class="icon-img"> <span>FACEBOOK</span>
             </a>
 
             <a href="https://www.twitch.tv/vitolino03" target="_blank" class="link-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Twitch_Glitch_Logo_Purple.svg" class="icon-img"> TWITCH
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Twitch_Glitch_Logo_Purple.svg" class="icon-img"> <span>TWITCH</span>
             </a>
 
             <a href="https://kick.com/vitolino03" target="_blank" class="link-card">
-                <img src="Icon.jpeg" class="icon-img"> KICK
+                <img src="Icon.jpeg" class="icon-img"> <span>KICK</span>
             </a>
 
             <a href="https://www.youtube.com/@Vitolino03" target="_blank" class="link-card">
-                <img src="Icon (1).jpeg" class="icon-img"> YOUTUBE
+                <img src="Icon (1).jpeg" class="icon-img"> <span>YOUTUBE</span>
             </a>
 
             <a href="https://www.tiktok.com/@vitolino003" target="_blank" class="link-card">
-                <img src="TikTok_Logo_Alternative_2.webp" class="icon-img"> TIKTOK
+                <img src="TikTok_Logo_Alternative_2.webp" class="icon-img"> <span>TIKTOK</span>
             </a>
         </div>
 
-        <footer>© 2026 • VITOLINO03</footer>
+        <footer>© 2024 • VITOLINO03</footer>
     </div>
 
 </body>
