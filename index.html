@@ -11,13 +11,23 @@
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
             --text-color: #ffffff;
-            --hover-bg: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Animação Principal */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-color);
             background: radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 100%);
             color: var(--text-color);
             font-family: 'Inter', sans-serif;
@@ -26,82 +36,114 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        .container { width: 100%; max-width: 400px; text-align: center; }
-
-        .profile-wrapper {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 16px;
+        .container { 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
         }
 
+        /* Aplicando animações com atrasos diferentes */
         .profile-img {
             width: 110px;
             height: 110px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--card-border);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            margin-bottom: 16px;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
-        h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.5px; }
-        p { font-size: 0.95rem; color: #888; margin-bottom: 32px; }
+        h1 { 
+            font-size: 1.5rem; 
+            margin-bottom: 32px; 
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+            opacity: 0; /* Começa invisível para a animação funcionar */
+        }
 
-        .links-container { display: flex; flex-direction: column; gap: 14px; }
+        .links-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 14px; 
+        }
 
         .link-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 18px;
+            padding: 14px 20px;
             border-radius: 12px;
             text-decoration: none;
             color: var(--text-color);
             font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
             display: flex;
-            justify-content: center;
             align-items: center;
+            transition: 0.3s;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
         }
+
+        /* Delays para os botões aparecerem em escada */
+        .link-card:nth-child(1) { animation-delay: 0.4s; }
+        .link-card:nth-child(2) { animation-delay: 0.5s; }
+        .link-card:nth-child(3) { animation-delay: 0.6s; }
+        .link-card:nth-child(4) { animation-delay: 0.7s; }
+        .link-card:nth-child(5) { animation-delay: 0.8s; }
 
         .link-card:hover {
-            background: var(--hover-bg);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
-        /* Cores das bordas */
-        .livepix:hover { border-color: #28c76f; box-shadow: 0 0 15px rgba(40, 199, 111, 0.3); }
-        .tiktok:hover { border-color: #ff0050; box-shadow: 0 0 15px rgba(255, 0, 80, 0.3); }
-        .twitch:hover { border-color: #9146ff; box-shadow: 0 0 15px rgba(145, 70, 255, 0.3); }
-        .youtube:hover { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
-        .kick:hover { border-color: #53fc18; box-shadow: 0 0 15px rgba(83, 252, 24, 0.3); }
+        .icon-img {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+            border-radius: 6px;
+            object-fit: contain;
+        }
 
-        footer { margin-top: 40px; font-size: 0.75rem; color: #444; text-transform: uppercase; letter-spacing: 1.5px; }
+        footer { 
+            margin-top: 40px; 
+            font-size: 0.7rem; 
+            color: #444; 
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease forwards 1s;
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="profile-wrapper">
-            <img src="teste1.jpg" alt="Foto de Perfil" class="profile-img">
-        </div>
-        
+        <img src="teste1.jpg" alt="Perfil" class="profile-img">
         <h1>@Vitolino03</h1>
-        <p>Criador de Conteúdo</p>
 
         <div class="links-container">
-            <a href="https://livepix.gg/vitolino" target="_blank" class="link-card livepix">Mande um PIX (Livepix) 💸</a>
-            <a href="https://twitch.tv/vitolino03" target="_blank" class="link-card twitch">Twitch 🟣</a>
-            <a href="https://kick.com/vitolino03" target="_blank" class="link-card kick">Kick 🟢</a>
-            <a href="https://youtube.com/@Vitolino03" target="_blank" class="link-card youtube">YouTube 🔴</a>
-            <a href="https://tiktok.com/@vitolino003" target="_blank" class="link-card tiktok">TikTok ⚫</a>
+            <a href="https://livepix.gg/vitolino" target="_blank" class="link-card">
+                <img src="id5U7lS6PT_logos.jpeg" class="icon-img"> Livepix
+            </a>
+
+            <a href="https://www.twitch.tv/vitolino03" target="_blank" class="link-card">
+                <img src="id-FFX4wiS_1768956171159.jpeg" class="icon-img"> Twitch
+            </a>
+
+            <a href="https://kick.com/vitolino03" target="_blank" class="link-card">
+                <img src="Icon.jpeg" class="icon-img"> Kick
+            </a>
+
+            <a href="https://www.youtube.com/@Vitolino03" target="_blank" class="link-card">
+                <img src="Icon (1).jpeg" class="icon-img"> YouTube
+            </a>
+
+            <a href="https://www.tiktok.com/@vitolino003" target="_blank" class="link-card">
+                <img src="TikTok_Logo_Alternative_2.webp" class="icon-img"> TikTok
+            </a>
         </div>
 
-        <footer>
-            © 2024 • Vitolino03
-        </footer>
+        <footer>© 2024 • VITOLINO03</footer>
     </div>
 
 </body>
